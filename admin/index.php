@@ -131,14 +131,14 @@ $page_title="Admin Index";
                     </div>    <div class="scrollbar-sidebar">
                         <div class="app-sidebar__inner">
                             <ul class="vertical-nav-menu">
-                                <li class="app-sidebar__heading"></li>
+                                <li class="app-sidebar__heading">Dashboards</li>
                                 <li>
                                     <a href="../index.php" class="<?= $active == '/ebook-php/admin/dashboard/dashboard.php'?'mm-active':''?>">
                                         <i class="metismenu-icon pe-7s-rocket"></i>
                                         Dashboard
                                     </a>
                                 </li>
-                                <li class="app-sidebar__heading"></li>
+                                <li class="app-sidebar__heading">Libraries</li>
                                 <li>
                                     <a href="slide/slide.php" class="<?= $active == '/ebook-php/admin/slide/slide.php'?'mm-active':''?>">
                                         <i class="metismenu-icon pe-7s-photo"></i>
@@ -173,6 +173,7 @@ $page_title="Admin Index";
                                         E-books
                                     </a>
                                 </li>
+                                <li class="app-sidebar__heading">Users</li>
                                 <li>
                                     <a href="user/user.php" class="<?= $active == '/ebook-php/admin/user/user.php'?'mm-active':''?>">
                                         <i class="metismenu-icon pe-7s-users"></i>
