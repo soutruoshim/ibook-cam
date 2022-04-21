@@ -26,30 +26,22 @@ class Slide
         //write query
        // insert query
         $query = "INSERT INTO " . $this->table_name . "
-        SET title=:title, image=:image, status=:status,
-            category_id=:category_id, image=:image, created=:created";
+        SET title=:title, image=:image, status=:status";
 
 
         $stmt = $this->conn->prepare($query);
 
         // posted values
-        $this->name = htmlspecialchars(strip_tags($this->name));
-        $this->price = htmlspecialchars(strip_tags($this->price));
-        $this->description = htmlspecialchars(strip_tags($this->description));
-        $this->category_id = htmlspecialchars(strip_tags($this->category_id));
+        $this->title = htmlspecialchars(strip_tags($this->title));
+        $this->status = htmlspecialchars(strip_tags($this->status));
         $this->image=htmlspecialchars(strip_tags($this->image));
 
-        // to get time-stamp for 'created' field
-        $this->timestamp = date('Y-m-d H:i:s');
-
+    
         // bind values
-        $stmt->bindParam(":name", $this->name);
-        $stmt->bindParam(":price", $this->price);
-        $stmt->bindParam(":description", $this->description);
-        $stmt->bindParam(":category_id", $this->category_id);
+        $stmt->bindParam(":title", $this->title);
+        $stmt->bindParam(":status", $this->status);
         $stmt->bindParam(":image", $this->image);
-        $stmt->bindParam(":created", $this->timestamp);
-
+       
         if ($stmt->execute()) {
             return true;
         } else {
@@ -85,7 +77,7 @@ class Slide
     public function readOne()
     {
 
-        $query = "SELECT name, price, description, category_id, image
+        $query = "SELECT *
         FROM " . $this->table_name . "
         WHERE id = ?
         LIMIT 0,1";
@@ -96,10 +88,8 @@ class Slide
     
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
     
-        $this->name = $row['name'];
-        $this->price = $row['price'];
-        $this->description = $row['description'];
-        $this->category_id = $row['category_id'];
+        $this->title = $row['title'];
+        $this->status = $row['status'];
         $this->image = $row['image'];
     }
     public function update()
@@ -221,7 +211,7 @@ class Slide
         if($this->image){
     
             // sha1_file() function is used to make a unique file name
-            $target_directory = "uploads/";
+            $target_directory = "../../upload/images/slide/";
             $target_file = $target_directory . $this->image;
             $file_type = pathinfo($target_file, PATHINFO_EXTENSION);
     

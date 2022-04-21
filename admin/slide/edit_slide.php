@@ -1,14 +1,17 @@
 <?php
    include("../inc/header.php");
    include(__DIR__ . "/../../config/database.php");
+   include(__DIR__ . "/../../objects/slide.php");
+
    if(isset($_GET['id'])){
     $id = $_GET['id'];
    
-    $b = new database();
-    $b->select("slides","*","id='$id'");
-    $result = $b->sql;
+    // get database connection
+    $database = new Database();
+    $db = $database->getConnection();
 
-    $row = mysqli_fetch_assoc($result);
+     // pass connection to objects
+     $slide = new Slide($db);
 }
 ?>
 <div class="app-page-title">
