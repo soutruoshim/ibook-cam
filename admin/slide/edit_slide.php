@@ -3,16 +3,17 @@
    include(__DIR__ . "/../../config/database.php");
    include(__DIR__ . "/../../objects/slide.php");
 
-   if(isset($_GET['id'])){
-    $id = $_GET['id'];
-   
-    // get database connection
+   $id = isset($_GET['id']) ? $_GET['id'] : die('ERROR: missing ID.');
+
+   // get database connection
     $database = new Database();
     $db = $database->getConnection();
+    // prepare objects
+    $slide = new Slide($db);
+    $slide->id = $id;
+    $slide->readOne();
 
-     // pass connection to objects
-     $slide = new Slide($db);
-}
+
 ?>
 <div class="app-page-title">
     <div class="page-title-wrapper">
@@ -48,7 +49,7 @@
                 <input type="hidden" name="id" value="<?php echo $id; ?>">
                 <div class="position-relative form-group">
                     <label class="">Slide Title</label>
-                    <input name="title" id="title" value="<?php if(isset($row)) { echo $row['title']; } ?>" placeholder="" type="text" class="form-control">
+                    <input name="title" id="title" value="<?= $slide->title; ?>" placeholder="" type="text" class="form-control">
                 </div>
                 <div class="position-relative form-group">
                     <label class="">Image</label><br>

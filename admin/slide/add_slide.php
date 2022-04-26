@@ -11,16 +11,10 @@
     // pass connection to objects
     $slide = new Slide($db);
 
-    // set ID property of product to be edited
-    $slide->id = $id;
-    
-    // read the details of product to be edited
-    $product->readOne();
-
 
     if ($_POST) {
         // set slide property values
-        $slide->name = $_POST['title'];
+        $slide->title = $_POST['title'];
         $slide->status = $_POST['status'];
         $image=!empty($_FILES["image"]["name"])
         ? sha1_file($_FILES['image']['tmp_name']) . "-" . basename($_FILES["image"]["name"]) : "";
