@@ -37,7 +37,7 @@
                  <div class="card-body"><h5 class="card-title"></h5>
                 <div class="row">
                         <div class="col-md-12 p-3">
-                            <table class="table" id="tbl_category">
+                            <table class="table" id="tbl_slide">
                                 <thead>
                                     <tr>
                                         <th scope="col" width = "10%">Id</th>
@@ -56,7 +56,8 @@
                                        $stmt = $slide->readAll();
                                        
                                     ?>
-                                    <?php while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) { ?>
+                                    <?php while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) { 
+                                        $id = $row['id']; ?>
                                         <tr>
                                             <td><?php echo $row['id']; ?></td>
                                             <td><?php echo $row['title']; ?></td>
@@ -65,8 +66,7 @@
                                             <td>
                                                 <form method="POST" action="queries/delete_slide.php">
                                                     <a href="edit_slide.php?id=<?php echo $row['id']; ?>" type="button" class="btn btn-primary btn-sm">Edit</a>
-                                                    <input name="id" type="hidden" value="<?php echo $row['id']; ?>">
-                                                    <input type="submit" class="btn btn-danger btn-sm" name="submit" value="Delete">
+                                                    <a delete-id='<?= $id ?>' class='btn btn-danger text-white btn-sm delete-object' type="button">Delete</a>
                                                 </form>
                                             </td>
                                         </tr>
@@ -83,8 +83,46 @@
 <?php
    include("../inc/footer.php");
 ?>
-<<script>
+
+<script>
     $(document).ready(function() {
-       $('#tbl_category').DataTable();
+       $('#tbl_slide').DataTable();
     } );
+
+// JavaScript for deleting product
+$(document).on('click', '.delete-object', function(){
+  
+    var id = $(this).attr('delete-id');
+    console.log("id", id);
+    Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.post('delete_slide.php', {
+                    object_id: id
+                }, function(data){
+                    Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                    ).then((value) => {
+                        location.reload();
+                    });
+                   
+                }).fail(function() {
+                    alert('Unable to delete.');
+                });
+                   
+        }
+    })
+
+    return false;
+});
+
 </script>                   
