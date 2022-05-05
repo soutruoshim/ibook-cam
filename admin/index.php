@@ -168,7 +168,7 @@ $page_title="Admin Index";
                                 </li>
                                 <li class="app-sidebar__heading"></li>
                                 <li>
-                                    <a href="ebook/ebook.php" class="<?= $active == '/ebook-php/admin/ebook/ebook.php'?'mm-active':''?>">
+                                    <a href="book/books.php" class="<?= $active == '/ibook-cambodia/admin/book/books.php'?'mm-active':''?>">
                                         <i class="metismenu-icon pe-7s-notebook"></i>
                                         E-books
                                     </a>
