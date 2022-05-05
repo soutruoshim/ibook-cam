@@ -1,37 +1,40 @@
 <?php
-   include("../inc/header.php");
-   // include 'database.php';
-   include(__DIR__ . "/../../config/database.php");
-   include(__DIR__ . "/../../objects/slide.php");
+include("../inc/header.php");
+// include 'database.php';
+include(__DIR__ . "/../../config/database.php");
+include(__DIR__ . "/../../objects/book.php");
+include(__DIR__ . "/../../objects/author.php");
+include(__DIR__ . "/../../objects/publisher.php");
+include(__DIR__ . "/../../objects/category.php");
 
-    // get database connection
-    $database = new Database();
-    $db = $database->getConnection();
+// get database connection
+$database = new Database();
+$db = $database->getConnection();
 
-    // pass connection to objects
-    $slide = new Slide($db);
+// pass connection to objects
+$book = new Book($db);
 
 
-    if ($_POST) {
-        // set slide property values
-        $slide->title = $_POST['title'];
-        $slide->status = $_POST['status'];
-        $image=!empty($_FILES["image"]["name"])
+if ($_POST) {
+    // set book property values
+    $book->title = $_POST['title'];
+    $book->status = $_POST['status'];
+    $image = !empty($_FILES["image"]["name"])
         ? sha1_file($_FILES['image']['tmp_name']) . "-" . basename($_FILES["image"]["name"]) : "";
-        $slide->image = $image;
-        // create the product
-        if ($slide->create()) {
-            echo "<div class='alert alert-success'>Slide was created.</div>";
-            // try to upload the submitted file
-            // uploadPhoto() method will return an error message, if any.
-            echo $slide->uploadPhoto();
-        }
-    
-        // if unable to create the product, tell the user
-        else {
-            echo "<div class='alert alert-danger'>Unable to create slide.</div>";
-        }
+    $book->image = $image;
+    // create the product
+    if ($book->create()) {
+        echo "<div class='alert alert-success'>Book was created.</div>";
+        // try to upload the submitted file
+        // uploadPhoto() method will return an error message, if any.
+        echo $book->uploadPhoto();
     }
+
+    // if unable to create the product, tell the user
+    else {
+        echo "<div class='alert alert-danger'>Unable to create book.</div>";
+    }
+}
 ?>
 <div class="app-page-title">
     <div class="page-title-wrapper">
@@ -40,55 +43,156 @@
                 <i class="pe-7s-photo icon-gradient bg-mean-fruit">
                 </i>
             </div>
-            <div>Add Slide
-                <div class="page-title-subheading">This is a page create new slide.
+            <div>Add book
+                <div class="page-title-subheading">This is a page create new book.
                 </div>
             </div>
         </div>
         <div class="page-title-actions">
-            
+
             <div class="d-inline-block dropdown">
-                <a type="button" class="btn-shadow btn btn-info" href="../slide/slides.php" >
+                <a type="button" class="btn-shadow btn btn-info" href="../book/books.php">
                     <span class="btn-icon-wrapper pr-2 opacity-7">
                         <i class="fa fa-reply fa-w-20"></i>
                     </span>
                     Back
                 </a>
-                
+
             </div>
-        </div>    
+        </div>
     </div>
 </div>
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-12">
         <div class="main-card mb-3 card">
-        <div class="card-body"><h5 class="card-title"></h5>
-            <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" enctype="multipart/form-data">
-                <div class="position-relative form-group">
-                    <label class="">Slide Title</label>
-                    <input name="title" id="title" placeholder="" type="text" class="form-control">
-                </div>
-                <div class="position-relative form-group">
-                    <label class="">Image</label><br>
-                    <div style="margin-bottom: 8px"><img id="slide_photo" src="<?= '../../upload/images/empty-image-back.jpg' ?>" width="100%" height="300" alt=""></div>
-                    <input type="file" name="image" placeholder="Choose image" id="image" class="form-control" onchange="document.getElementById('slide_photo').src = window.URL.createObjectURL(this.files[0])">
-                </div>
-                <div class="position-relative form-group">
-                    <label class="">Status</label>
-                    <select class="form-control" name="status" id="status">
-                        <option value="" selected disabled>Choice Status</option>
-                        <option value="active">Active</option>
-                        <option value="inactive">InActive</option>
-                    </select>
-                </div>
-                <input type="submit" class="btn btn-primary" name="submit" value="Save Slide">
-            </form>
-        </div>
+            <div class="card-body">
+                <h5 class="card-title"></h5>
+                <form method="POST" action="" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-md-6">
+                        </div>
+                        <div class="col-md-6">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="position-relative form-group">
+                                <label class="">Title</label>
+                                <input name="title" id="title" placeholder="" type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="position-relative form-group">
+                                <label class="">ISBN</label>
+                                <input name="ISBN" id="ISBN" placeholder="" type="text" class="form-control">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="position-relative form-group">
+                                <label class="">Author</label>
+                                <?php
+                                $b = new database();
+                                $author = new Author($db);
+                                $stmt = $author->readAll();
+                                ?>
+                                <select class="form-control" name="author_id" id="author_id">
+                                    <option value="" selected disabled>Choice Author</option>
+                                    <?php while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) { ?>
+                                        <option value="<?= $row['id'] ?>"> <?= $row['title'] ?> </option>
+                                    <?php } ?>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="position-relative form-group">
+                                <label class="">Category</label>
+                                <?php
+                                $category = new Category($db);
+                                $stmt = $category->readAll();
+                                ?>
+                                <select class="form-control" name="category_id" id="category_id">
+                                    <option value="" selected disabled>Choice Category</option>
+                                    <?php while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) { ?>
+                                        <option value="<?= $row['id'] ?>"> <?= $row['title'] ?> </option>
+                                    <?php } ?>
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="position-relative form-group">
+                                <label class="">Publisher</label>
+                                <?php
+                                $publisher = new Publisher($db);
+                                $stmt = $publisher->readAll();
+                                ?>
+                                <select class="form-control" name="publisher_id" id="publisher_id">
+                                    <option value="" selected disabled>Choice Publisher</option>
+                                    <?php while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) { ?>
+                                        <option value="<?= $row['id'] ?>"> <?= $row['title'] ?> </option>
+                                    <?php } ?>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="position-relative form-group">
+                                <label class="">Publication Year</label>
+                                <!-- <input name="publication_year" id="publication_year" placeholder="" type="text" class="form-control"> -->
+                                <select class="form-control" name="publication_year" id="publication_year">
+                                    <option value="" selected disabled>Select Year</option>
+                                    <?php for ($year = intval(date('Y')) - 10; $year <= intval(date('Y')); $year++) { ?>
+                                        <option value="<?= $year ?>"> <?= $year ?> </option>
+                                    <?php } ?>
+
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="position-relative form-group">
+                                <label class="">Pages</label>
+                                <input name="page" id="page" placeholder="" type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="position-relative form-group">
+                                <label class="">Price</label>
+                                <input name="price" id="price" placeholder="" type="text" class="form-control">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="position-relative form-group">
+                        <label class="">Detail</label>
+                        <textarea rows="5" cols="20" name="detail" id="detail" placeholder="" type="text" class="form-control"></textarea>
+
+                    </div>
+                    <div class="position-relative form-group">
+                        <label class="">Image</label><br>
+                        <div style="margin-bottom: 8px"><img id="book_photo" src="<?= 'images/empty_img.png' ?>" width="180" height="200" alt=""></div>
+                        <input type="file" name="image" placeholder="Choose image" id="image" class="form-control" onchange="document.getElementById('book_photo').src = window.URL.createObjectURL(this.files[0])">
+                    </div>
+                    <div class="position-relative form-group">
+                        <label class="">Book File</label>
+                        <input type="file" name="book_file" placeholder="Choose Book File" id="book_file" class="form-control">
+                    </div>
+                    <input type="submit" class="btn btn-dark" name="submit" value="Save Ebook">
+                </form>
+            </div>
         </div>
     </div>
 </div>
 <?php
-   include("../inc/footer.php");
-   
+include("../inc/footer.php");
+
 ?>
-                   

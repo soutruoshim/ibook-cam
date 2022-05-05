@@ -3,6 +3,10 @@
     // include 'database.php';
     include(__DIR__ . "/../../config/database.php");
     include(__DIR__ . "/../../objects/book.php");
+
+    $database = new Database();
+    $db = $database->getConnection();
+    
 ?>
 <div class="app-page-title">
     <div class="page-title-wrapper">
@@ -41,9 +45,9 @@
                                 <thead>
                                     <tr>
                                         <th scope="col" width = "10%">Id</th>
-                                        <th scope="col" width = "35%">Title</th>
-                                        <th scope="col" width = "35%">Image</th>
-                                        <th scope="col" width = "10%">Status</th>
+                                        <th scope="col" width = "20%">Cover</th>
+                                        <th scope="col" width = "30%">Title</th>
+                                        <th scope="col" width = "30%">File</th>
                                         <th scope="col" width = "10%">Action</th>
                                     </tr>
                                 </thead>
@@ -60,9 +64,11 @@
                                         $id = $row['id']; ?>
                                         <tr>
                                             <td><?php echo $row['id']; ?></td>
+                                            <td><img src="<?= '../../upload/images/book/'.$row['image'] ?>" width="70" height="120"/> </td>
+                                
                                             <td><?php echo $row['title']; ?></td>
-                                            <td><img src="<?= '../../upload/images/book/'.$row['image'] ?>" width="170" height="70"/> </td>
-                                            <td><?php echo $row['status']; ?></td>
+                                            
+                                            <td><?php echo $row['file']; ?></td>
                                             <td>
                                                 <form method="POST" action="queries/delete_book.php">
                                                     <a href="edit_book.php?id=<?php echo $row['id']; ?>" type="button" class="btn btn-primary btn-sm">Edit</a>
