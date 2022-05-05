@@ -129,21 +129,21 @@
                         
                                 <li class="app-sidebar__heading">Dashboards</li>
                                 <li>
-                                    <a href="../index.php" class="<?= $active == '/ebook-php/admin/dashboard/dashboard.php'?'mm-active':''?>">
+                                    <a href="../index.php" class="<?= $active == '/ibook-cambodia/admin/dashboard/dashboard.php'?'mm-active':''?>">
                                         <i class="metismenu-icon pe-7s-rocket"></i>
                                         Dashboard
                                     </a>
                                 </li>
                                 <li class="app-sidebar__heading">Libraries</li>
                                 <li>
-                                    <a href="../slide/slide.php" class="<?= $active == '/ebook-php/admin/slide/slide.php'?'mm-active':''?>">
+                                    <a href="../slide/slides.php" class="<?= $active == '/ibook-cambodia/admin/slide/slides.php'?'mm-active':''?>">
                                         <i class="metismenu-icon pe-7s-photo"></i>
                                         Slide
                                     </a>
                                 </li>
                                 <li class="app-sidebar__heading"></li>
                                 <li>
-                                    <a href="../category/category.php" class="<?= $active == '/ebook-php/admin/category/category.php'?'mm-active':''?>">
+                                    <a href="../category/categories.php" class="<?= $active == '/ibook-cambodia/admin/category/categories.php'?'mm-active':''?>">
                                         <i class="metismenu-icon pe-7s-note2"></i>
                                         Categories
                                     </a>

@@ -140,14 +140,14 @@ $page_title="Admin Index";
                                 </li>
                                 <li class="app-sidebar__heading">Libraries</li>
                                 <li>
-                                    <a href="slide/slide.php" class="<?= $active == '/ebook-php/admin/slide/slide.php'?'mm-active':''?>">
+                                    <a href="slide/slides.php" class="<?= $active == '/ebook-php/admin/slide/slides.php'?'mm-active':''?>">
                                         <i class="metismenu-icon pe-7s-photo"></i>
                                         Slide
                                     </a>
                                 </li>
                                 <li class="app-sidebar__heading"></li>
                                 <li>
-                                    <a href="category/category.php" class="<?= $active == '/ebook-php/admin/category/category.php'?'mm-active':''?>">
+                                    <a href="category/categories.php" class="<?= $active == '/ebook-php/admin/category/categories.php'?'mm-active':''?>">
                                         <i class="metismenu-icon pe-7s-note2"></i>
                                         Categories
                                     </a>
