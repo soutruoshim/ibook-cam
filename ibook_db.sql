@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 05, 2022 at 04:28 AM
+-- Generation Time: May 05, 2022 at 06:59 AM
 -- Server version: 5.7.36
 -- PHP Version: 8.0.13
 
@@ -51,6 +51,33 @@ INSERT INTO `authors` (`id`, `title`, `slug`, `image`, `status`, `created_at`, `
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `books`
+--
+
+DROP TABLE IF EXISTS `books`;
+CREATE TABLE IF NOT EXISTS `books` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `author_id` int(200) DEFAULT NULL,
+  `title` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ISBN` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `category_id` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `publisher_id` int(11) DEFAULT NULL,
+  `publish_year` longtext COLLATE utf8mb4_unicode_ci,
+  `price` double DEFAULT NULL,
+  `image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `size` float DEFAULT NULL,
+  `page` int(11) DEFAULT NULL,
+  `book_file_review` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `book_file` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `detail` text COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `categories`
 --
 
@@ -91,14 +118,13 @@ CREATE TABLE IF NOT EXISTS `publishers` (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `publishers`
 --
 
 INSERT INTO `publishers` (`id`, `title`, `slug`, `image`, `status`, `created_at`, `updated_at`) VALUES
-(16, '3546', NULL, '63a90ff103506a08727defff26e3f880448f535d-1200px-World_Passport_front_page.jpg', 'active', '2022-05-05 03:53:09', NULL),
 (15, '234', NULL, '63a90ff103506a08727defff26e3f880448f535d-1200px-World_Passport_front_page.jpg', 'active', '2022-05-05 03:41:01', NULL),
 (14, 'sdf', NULL, '63a90ff103506a08727defff26e3f880448f535d-1200px-World_Passport_front_page.jpg', 'inactive', '2022-05-05 03:39:34', NULL);
 
