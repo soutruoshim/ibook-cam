@@ -2,34 +2,34 @@
    include("../inc/header.php");
    // include 'database.php';
    include(__DIR__ . "/../../config/database.php");
-   include(__DIR__ . "/../../objects/category.php");
+   include(__DIR__ . "/../../objects/publisher.php");
 
     // get database connection
     $database = new Database();
     $db = $database->getConnection();
 
     // pass connection to objects
-    $category = new Category($db);
+    $publisher = new Publisher($db);
 
 
     if ($_POST) {
-        // set category property values
-        $category->title = $_POST['title'];
-        $category->status = $_POST['status'];
+        // set publisher property values
+        $publisher->title = $_POST['title'];
+        $publisher->status = $_POST['status'];
         $image=!empty($_FILES["image"]["name"])
         ? sha1_file($_FILES['image']['tmp_name']) . "-" . basename($_FILES["image"]["name"]) : "";
-        $category->image = $image;
+        $publisher->image = $image;
         // create the product
-        if ($category->create()) {
-            echo "<div class='alert alert-success'>Category was created.</div>";
+        if ($publisher->create()) {
+            echo "<div class='alert alert-success'>Publisher was created.</div>";
             // try to upload the submitted file
             // uploadPhoto() method will return an error message, if any.
-            echo $category->uploadPhoto();
+            echo $publisher->uploadPhoto();
         }
     
         // if unable to create the product, tell the user
         else {
-            echo "<div class='alert alert-danger'>Unable to create category.</div>";
+            echo "<div class='alert alert-danger'>Unable to create publisher.</div>";
         }
     }
 ?>
@@ -41,15 +41,15 @@
                 <i class="pe-7s-note2 icon-gradient bg-mean-fruit">
                 </i>
             </div>
-            <div>Add Category
-                <div class="page-title-subheading">This is a page create new category.
+            <div>Add Publisher
+                <div class="page-title-subheading">This is a page create new Publisher.
                 </div>
             </div>
         </div>
         <div class="page-title-actions">
             
             <div class="d-inline-block dropdown">
-                <a type="button" class="btn-shadow btn btn-info" href="../category/categories.php" >
+                <a type="button" class="btn-shadow btn btn-info" href="../publisher/publishers.php" >
                     <span class="btn-icon-wrapper pr-2 opacity-7">
                         <i class="fa fa-reply fa-w-20"></i>
                     </span>
@@ -66,15 +66,15 @@
         <div class="card-body"><h5 class="card-title"></h5>
             <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" enctype="multipart/form-data">
                 <div class="position-relative form-group">
-                    <label class="">Category Name</label>
+                    <label class="">publisher Name</label>
                     <input name="title" id="title" placeholder="" type="text" class="form-control">
                 </div>
                 <div class="position-relative form-group">
                     <label class="">Image</label><br>
                     <div style="margin-bottom: 8px">
-                    <img id="category_photo" src="<?= '../../upload/images/empty-image-back.jpg' ?>" width="50%" height="300" alt="">
+                    <img id="publisher_photo" src="<?= '../../upload/images/empty-image-back.jpg' ?>" width="50%" height="300" alt="">
                     </div>
-                    <input type="file" name="image" placeholder="Choose image" id="image" class="form-control" onchange="document.getElementById('category_photo').src = window.URL.createObjectURL(this.files[0])">
+                    <input type="file" name="image" placeholder="Choose image" id="image" class="form-control" onchange="document.getElementById('publisher_photo').src = window.URL.createObjectURL(this.files[0])">
                 </div>
                 <div class="position-relative form-group">
                     <label class="">Status</label>
@@ -84,7 +84,7 @@
                         <option value="inactive">InActive</option>
                     </select>
                 </div>
-                <input type="submit" class="btn btn-primary" name="submit" value="Save category">
+                <input type="submit" class="btn btn-primary" name="submit" value="Save Publisher">
             </form>
         </div>
         </div>

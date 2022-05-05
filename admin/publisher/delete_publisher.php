@@ -4,20 +4,20 @@ if($_POST){
   
     // include database and object file
     include(__DIR__ . "/../../config/database.php");
-    include(__DIR__ . "/../../objects/category.php");
+    include(__DIR__ . "/../../objects/publisher.php");
   
     // get database connection
     $database = new Database();
     $db = $database->getConnection();
   
     // prepare product object
-    $category = new Category($db);
+    $publisher = new Publisher($db);
       
     // set product id to be deleted
-    $category->id = $_POST['object_id'];
+    $publisher->id = $_POST['object_id'];
       
     // delete the product
-    if($category->delete()){
+    if($publisher->delete()){
         echo "Object was deleted.";
     }
       
