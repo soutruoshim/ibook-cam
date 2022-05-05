@@ -150,14 +150,14 @@
                                 </li>
                                 <li class="app-sidebar__heading"></li>
                                 <li>
-                                    <a href="../author/author.php" class="<?= $active == '/ebook-php/admin/author/author.php'?'mm-active':''?>">
+                                    <a href="../author/authors.php" class="<?= $active == '/ibook-cambodia/admin/author/authors.php'?'mm-active':''?>">
                                         <i class="metismenu-icon pe-7s-study"></i>
                                         Authors
                                     </a>
                                 </li>
                                 <li class="app-sidebar__heading"></li>
                                 <li>
-                                    <a href="../publisher/publisher.php" class="<?= $active == '/ebook-php/admin/publisher/publisher.php'?'mm-active':''?>">
+                                    <a href="../publisher/publishers.php" class="<?= $active == '/ibook-cambodia/admin/publisher/publishers.php'?'mm-active':''?>">
                                         <i class="metismenu-icon pe-7s-compass"></i>
                                         Publishers
                                     </a>

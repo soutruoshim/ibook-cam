@@ -140,28 +140,28 @@ $page_title="Admin Index";
                                 </li>
                                 <li class="app-sidebar__heading">Libraries</li>
                                 <li>
-                                    <a href="slide/slides.php" class="<?= $active == '/ebook-php/admin/slide/slides.php'?'mm-active':''?>">
+                                    <a href="slide/slides.php" class="<?= $active == '/ibook-cambodia/admin/slide/slides.php'?'mm-active':''?>">
                                         <i class="metismenu-icon pe-7s-photo"></i>
                                         Slide
                                     </a>
                                 </li>
                                 <li class="app-sidebar__heading"></li>
                                 <li>
-                                    <a href="category/categories.php" class="<?= $active == '/ebook-php/admin/category/categories.php'?'mm-active':''?>">
+                                    <a href="category/categories.php" class="<?= $active == '/ibook-cambodia/admin/category/categories.php'?'mm-active':''?>">
                                         <i class="metismenu-icon pe-7s-note2"></i>
                                         Categories
                                     </a>
                                 </li>
                                 <li class="app-sidebar__heading"></li>
                                 <li>
-                                    <a href="author/author.php" class="<?= $active == '/ebook-php/admin/author/author.php'?'mm-active':''?>">
+                                    <a href="author/authors.php" class="<?= $active == '/ibook-cambodia/admin/author/authors.php'?'mm-active':''?>">
                                         <i class="metismenu-icon pe-7s-study"></i>
                                         Authors
                                     </a>
                                 </li>
                                 <li class="app-sidebar__heading"></li>
                                 <li>
-                                    <a href="publisher/publisher.php" class="<?= $active == '/ebook-php/admin/publisher/publisher.php'?'mm-active':''?>">
+                                    <a href="publisher/publishers.php" class="<?= $active == '/ibook-cambodia/admin/publisher/publishers.php'?'mm-active':''?>">
                                         <i class="metismenu-icon pe-7s-compass"></i>
                                         Publishers
                                     </a>

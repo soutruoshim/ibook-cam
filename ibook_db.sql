@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 21, 2022 at 08:59 AM
+-- Generation Time: May 05, 2022 at 04:28 AM
 -- Server version: 5.7.36
 -- PHP Version: 8.0.13
 
@@ -24,6 +24,87 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `authors`
+--
+
+DROP TABLE IF EXISTS `authors`;
+CREATE TABLE IF NOT EXISTS `authors` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `title` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `slug` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` enum('active','inactive') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `authors`
+--
+
+INSERT INTO `authors` (`id`, `title`, `slug`, `image`, `status`, `created_at`, `updated_at`) VALUES
+(17, 'KLM', NULL, '63a90ff103506a08727defff26e3f880448f535d-1200px-World_Passport_front_page.jpg', 'active', '2022-05-05 04:22:17', NULL),
+(18, 'KLM', NULL, '63a90ff103506a08727defff26e3f880448f535d-1200px-World_Passport_front_page.jpg', 'active', '2022-05-05 04:22:54', NULL),
+(20, '3425u', NULL, 'ba858db81bf914c4f5cc5a14d4f838732b370704-paid.jpg', 'inactive', '2022-05-05 04:23:32', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `categories`
+--
+
+DROP TABLE IF EXISTS `categories`;
+CREATE TABLE IF NOT EXISTS `categories` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `title` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `slug` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` enum('active','inactive') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`id`, `title`, `slug`, `image`, `status`, `created_at`, `updated_at`) VALUES
+(16, '3546', NULL, '63a90ff103506a08727defff26e3f880448f535d-1200px-World_Passport_front_page.jpg', 'active', '2022-05-05 03:53:09', NULL),
+(15, '234', NULL, '63a90ff103506a08727defff26e3f880448f535d-1200px-World_Passport_front_page.jpg', 'active', '2022-05-05 03:41:01', NULL),
+(14, 'sdf', NULL, '63a90ff103506a08727defff26e3f880448f535d-1200px-World_Passport_front_page.jpg', 'inactive', '2022-05-05 03:39:34', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `publishers`
+--
+
+DROP TABLE IF EXISTS `publishers`;
+CREATE TABLE IF NOT EXISTS `publishers` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `title` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `slug` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` enum('active','inactive') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `publishers`
+--
+
+INSERT INTO `publishers` (`id`, `title`, `slug`, `image`, `status`, `created_at`, `updated_at`) VALUES
+(16, '3546', NULL, '63a90ff103506a08727defff26e3f880448f535d-1200px-World_Passport_front_page.jpg', 'active', '2022-05-05 03:53:09', NULL),
+(15, '234', NULL, '63a90ff103506a08727defff26e3f880448f535d-1200px-World_Passport_front_page.jpg', 'active', '2022-05-05 03:41:01', NULL),
+(14, 'sdf', NULL, '63a90ff103506a08727defff26e3f880448f535d-1200px-World_Passport_front_page.jpg', 'inactive', '2022-05-05 03:39:34', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `slides`
 --
 
@@ -36,15 +117,19 @@ CREATE TABLE IF NOT EXISTS `slides` (
   `created_dt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `update_dt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Dumping data for table `slides`
 --
 
 INSERT INTO `slides` (`id`, `title`, `image`, `status`, `created_dt`, `update_dt`) VALUES
-(2, '345', '72fbcd2736c9f75914389b53048d73ed.png', 'inactive', '2022-03-17 15:04:13', NULL),
-(3, '3456', '9da68f704affa4077fa9c3f3e3f188da.png', 'active', '2022-03-17 15:05:33', NULL);
+(26, 'w', '63a90ff103506a08727defff26e3f880448f535d-1200px-World_Passport_front_page.jpg', 'active', '2022-05-05 10:38:04', NULL),
+(3, 'uio', '63a90ff103506a08727defff26e3f880448f535d-1200px-World_Passport_front_page.jpg', 'inactive', '2022-03-17 15:05:33', NULL),
+(25, 'w', '63a90ff103506a08727defff26e3f880448f535d-1200px-World_Passport_front_page.jpg', 'active', '2022-05-05 10:37:45', NULL),
+(24, 'Slide1', '26f16acfcfdaf886d244c169392b02cbc9deb6a8-de378j3jtuks.png', 'active', '2022-05-05 10:36:00', NULL),
+(21, '', 'fe79966cbefb4158165a4ce7e8ba035a5bb91d31-refunded.jpg', 'inactive', '2022-04-26 14:43:35', NULL),
+(20, 'TR', '392b13a32958c1c1ebb4dc4575e03353cb9e228d-microsoft.png', 'active', '2022-04-21 16:27:51', NULL);
 
 -- --------------------------------------------------------
 
