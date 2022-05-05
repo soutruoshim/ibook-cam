@@ -2,7 +2,7 @@
    include("../inc/header.php");
     // include 'database.php';
     include(__DIR__ . "/../../config/database.php");
-    include(__DIR__ . "/../../objects/category.php");
+    include(__DIR__ . "/../../objects/publisher.php");
 ?>
 <div class="app-page-title">
     <div class="page-title-wrapper">
@@ -11,15 +11,15 @@
             <i class="pe-7s-note2 icon-gradient bg-mean-fruit">
                 </i>
             </div>
-            <div>Categories
-                <div class="page-title-subheading">This is a page for management categories.
+            <div>Publishers
+                <div class="page-title-subheading">This is a page for management publishers.
                 </div>
             </div>
         </div>
         <div class="page-title-actions">
             
             <div class="d-inline-block dropdown">
-                <a type="button" class="btn-shadow btn btn-info" href="../category/add_category.php" >
+                <a type="button" class="btn-shadow btn btn-info" href="../publisher/add_publisher.php" >
                     <span class="btn-icon-wrapper pr-2 opacity-7">
                         <i class="fa fa-plus fa-w-20"></i>
                     </span>
@@ -37,7 +37,7 @@
                  <div class="card-body"><h5 class="card-title"></h5>
                 <div class="row">
                         <div class="col-md-12 p-3">
-                            <table class="table" id="tbl_category">
+                            <table class="table" id="tbl_publisher">
                                 <thead>
                                     <tr>
                                         <th scope="col" width = "10%">Id</th>
@@ -52,8 +52,8 @@
                                        
                                        $database = new Database();
                                        $db = $database->getConnection();
-                                       $category = new Category($db);
-                                       $stmt = $category->readAll();
+                                       $publisher = new Publisher($db);
+                                       $stmt = $publisher->readAll();
                                        
                                     ?>
                                     <?php while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) { 
@@ -61,11 +61,11 @@
                                         <tr>
                                             <td><?php echo $row['id']; ?></td>
                                             <td><?php echo $row['title']; ?></td>
-                                            <td><img src="<?= '../../upload/images/category/'.$row['image'] ?>" width="170" height="70"/> </td>
+                                            <td><img src="<?= '../../upload/images/publisher/'.$row['image'] ?>" width="170" height="70"/> </td>
                                             <td><?php echo $row['status']; ?></td>
                                             <td>
-                                                <form method="POST" action="queries/delete_category.php">
-                                                    <a href="edit_category.php?id=<?php echo $row['id']; ?>" type="button" class="btn btn-primary btn-sm">Edit</a>
+                                                <form method="POST" action="queries/delete_publisher.php">
+                                                    <a href="edit_publisher.php?id=<?php echo $row['id']; ?>" type="button" class="btn btn-primary btn-sm">Edit</a>
                                                     <a delete-id='<?= $id ?>' class='btn btn-danger text-white btn-sm delete-object' type="button">Delete</a>
                                                 </form>
                                             </td>
@@ -86,7 +86,7 @@
 
 <script>
     $(document).ready(function() {
-       $('#tbl_category').DataTable();
+       $('#tbl_publisher').DataTable();
     } );
 
 // JavaScript for deleting product
@@ -104,7 +104,7 @@ $(document).on('click', '.delete-object', function(){
             confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    $.post('delete_category.php', {
+                    $.post('delete_publisher.php', {
                     object_id: id
                 }, function(data){
                     Swal.fire(
