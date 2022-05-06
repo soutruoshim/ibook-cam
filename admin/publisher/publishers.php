@@ -42,9 +42,9 @@
                                     <tr>
                                         <th scope="col" width = "10%">Id</th>
                                         <th scope="col" width = "35%">Name</th>
-                                        <th scope="col" width = "35%">Image</th>
-                                        <th scope="col" width = "10%">Status</th>
-                                        <th scope="col" width = "10%">Action</th>
+                                        <th scope="col" width = "25%">Image</th>
+                                        <th scope="col" width = "15%">Status</th>
+                                        <th scope="col" width = "15%">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -61,7 +61,7 @@
                                         <tr>
                                             <td><?php echo $row['id']; ?></td>
                                             <td><?php echo $row['title']; ?></td>
-                                            <td><img src="<?= '../../upload/images/publisher/'.$row['image'] ?>" width="170" height="70"/> </td>
+                                            <td><img src="<?= '../../upload/images/publisher/'.$row['image'] ?>" width="80" height="80"/> </td>
                                             <td><?php echo $row['status']; ?></td>
                                             <td>
                                                 <form method="POST" action="queries/delete_publisher.php">

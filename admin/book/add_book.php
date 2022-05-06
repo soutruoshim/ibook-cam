@@ -45,6 +45,8 @@ if ($_POST) {
         echo "<div class='alert alert-success'>Book was created.</div>";
         // uploadPhoto() method will return an error message, if any.
         echo $book->uploadPhoto();
+        echo $book->uploadFileReview();
+        echo $book->uploadFile();
     }
 
     // if unable to create the product, tell the user

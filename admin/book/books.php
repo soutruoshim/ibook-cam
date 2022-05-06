@@ -45,10 +45,11 @@
                                 <thead>
                                     <tr>
                                         <th scope="col" width = "10%">Id</th>
-                                        <th scope="col" width = "20%">Cover</th>
-                                        <th scope="col" width = "30%">Title</th>
-                                        <th scope="col" width = "30%">File</th>
-                                        <th scope="col" width = "10%">Action</th>
+                                        <th scope="col" width = "15%">Cover</th>
+                                        <th scope="col" width = "20%">Title</th>
+                                        <th scope="col" width = "20%">File Revew</th>
+                                        <th scope="col" width = "20%">File</th>
+                                        <th scope="col" width = "15%">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -68,7 +69,8 @@
                                 
                                             <td><?php echo $row['title']; ?></td>
                                             
-                                            <td><?php echo $row['file']; ?></td>
+                                            <td><?php echo $row['file']; ?> <a href="<?= '../../upload/file/book_file_review/'.$row['book_file_review'] ?>">View</a></td>
+                                            <td><?php echo $row['file']; ?> <a href="<?= '../../upload/file/book_file/'.$row['book_file'] ?>">View</a></td>
                                             <td>
                                                 <form method="POST" action="queries/delete_book.php">
                                                     <a href="edit_book.php?id=<?php echo $row['id']; ?>" type="button" class="btn btn-primary btn-sm">Edit</a>

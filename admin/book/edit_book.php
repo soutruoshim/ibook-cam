@@ -19,52 +19,46 @@
 
     // if the form was submitted
     if($_POST){
-        if(!empty($_FILES["image"]["name"])){
-            
-            $book->title =  $_POST['title'];
-            $book->author_id =  $_POST['author_id'];
-            $book->ISBN =  $_POST['ISBN'];
-            $book->category_id =  $_POST['category_id'];
-            $book->publisher_id =  $_POST['publisher_id'];
-            $book->publish_year =  $_POST['publication_year'];
-            $book->price =  $_POST['price'];
-            $book->detail =  $_POST['detail'];
-            $book->page =  $_POST['page'];
+        $book->title =  $_POST['title'];
+        $book->author_id =  $_POST['author_id'];
+        $book->ISBN =  $_POST['ISBN'];
+        $book->category_id =  $_POST['category_id'];
+        $book->publisher_id =  $_POST['publisher_id'];
+        $book->publish_year =  $_POST['publication_year'];
+        $book->price =  $_POST['price'];
+        $book->detail =  $_POST['detail'];
+        $book->page =  $_POST['page'];
 
-            $image = !empty($_FILES["image"]["name"])
-            ? sha1_file($_FILES['image']['tmp_name']) . "-" . basename($_FILES["image"]["name"]) : "";
-            $book->image = $image;
-
-            $book_file_review = !empty($_FILES["book_file_review"]["name"])
+        // update book
+        if ($book->update()) {
+            echo "<div class='alert alert-success'>book was updated.</div>";
+            if(!empty($_FILES["image"]["name"])){
+                $image = !empty($_FILES["image"]["name"])
+                ? sha1_file($_FILES['image']['tmp_name']) . "-" . basename($_FILES["image"]["name"]) : "";
+                $book->image = $image;
+                $book->update_image();
+                $book->uploadPhoto();
+            }
+            if(!empty($_FILES["book_file_review"]["name"])){
+                $book_file_review = !empty($_FILES["book_file_review"]["name"])
                 ? sha1_file($_FILES['book_file_review']['tmp_name']) . "-" . basename($_FILES["book_file_review"]["name"]) : "";
-            $book->book_file_review = $book_file_review;
-
-            $book_file = !empty($_FILES["book_file"]["name"])
+                
+                $book->book_file_review = $book_file_review;
+                $book->update_book_file_review();
+                $book->uploadFileReview();
+            }
+            if(!empty($_FILES["book_file"]["name"])){
+                $book_file = !empty($_FILES["book_file"]["name"])
                 ? sha1_file($_FILES['book_file']['tmp_name']) . "-" . basename($_FILES["book_file"]["name"]) : "";
-            $book->book_file = $book_file;
-            // update book
-            if ($book->update_with_file()) {
-                echo "<div class='alert alert-success'>book was updated.</div>";
-                echo $book->uploadPhoto();
-            }else {
-                echo "<div class='alert alert-danger'>Unable to Update book.</div>";
+                $book->book_file = $book_file;
+
+                $book->book_file = $book_file;
+                $book->update_book_file();
+                $book->uploadFile();
             }
-        }else{
-            $book->title =  $_POST['title'];
-            $book->author_id =  $_POST['author_id'];
-            $book->ISBN =  $_POST['ISBN'];
-            $book->category_id =  $_POST['category_id'];
-            $book->publisher_id =  $_POST['publisher_id'];
-            $book->publish_year =  $_POST['publication_year'];
-            $book->price =  $_POST['price'];
-            $book->detail =  $_POST['detail'];
-            $book->page =  $_POST['page'];
-            // update book
-            if ($book->update()) {
-                echo "<div class='alert alert-success'>book was updated.</div>";
-            }else {
-                echo "<div class='alert alert-danger'>Unable to Update book.</div>";
-            }
+            
+        }else {
+            echo "<div class='alert alert-danger'>Unable to Update book.</div>";
         }
     }
 ?>
@@ -209,7 +203,7 @@
             </div>
             <div class="position-relative form-group">
                 <label class="">Image</label><br>
-                <div style="margin-bottom: 8px"><img id="book_photo" src="<?php if(isset($book->image)) { echo '/images/ebook/'.$book->image; } ?>" width="180" height="200" alt=""></div>
+                <div style="margin-bottom: 8px"><img id="book_photo" src="<?php if(isset($book->image)) { echo '../../upload/images/book/'.$book->image; } ?>" width="180" height="200" alt=""></div>
                 <input type="file" name="image" placeholder="Choose image" id="image" class="form-control" onchange="document.getElementById('book_photo').src = window.URL.createObjectURL(this.files[0])">
             </div>
             <div class="position-relative form-group">

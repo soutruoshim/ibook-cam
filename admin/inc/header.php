@@ -169,6 +169,17 @@
                                         E-books
                                     </a>
                                 </li>
+                                <li class="app-sidebar__heading">Order</li>
+                                <li>
+                                    <a href="order/pending.php" class="<?= $active == '/ibook-cambodia/admin/order/pending.php'?'mm-active':''?>">
+                                        <i class="metismenu-icon pe-7s-shopbag"></i>
+                                        Pending
+                                    </a>
+                                    <a href="order/complete.php" class="<?= $active == '/ibook-cambodia/admin/order/complete.php'?'mm-active':''?>">
+                                        <i class="metismenu-icon pe-7s-shopbag"></i>
+                                        Complete
+                                    </a>
+                                </li>
                                 <li class="app-sidebar__heading">Users</li>
                                 <li>
                                     <a href="../user/users.php" class="<?= $active == '/ibook-cambodia/admin/user/users.php'?'mm-active':''?>">
