@@ -4,20 +4,20 @@ if($_POST){
   
     // include database and object file
     include(__DIR__ . "/../../config/database.php");
-    include(__DIR__ . "/../../objects/slide.php");
+    include(__DIR__ . "/../../objects/book.php");
   
     // get database connection
     $database = new Database();
     $db = $database->getConnection();
   
     // prepare product object
-    $slide = new Slide($db);
+    $book = new Book($db);
       
     // set product id to be deleted
-    $slide->id = $_POST['object_id'];
+    $book->id = $_POST['object_id'];
       
     // delete the product
-    if($slide->delete()){
+    if($book->delete()){
         echo "Object was deleted.";
     }
       

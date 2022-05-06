@@ -38,7 +38,7 @@
         <div class="page-title-heading">
             <div class="page-title-icon">
           
-                <i class="pe-7s-note2 icon-gradient bg-mean-fruit">
+                <i class="pe-7s-study icon-gradient bg-mean-fruit">
                 </i>
             </div>
             <div>Add Author

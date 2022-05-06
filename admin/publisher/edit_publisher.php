@@ -46,7 +46,7 @@
     <div class="page-title-wrapper">
         <div class="page-title-heading">
             <div class="page-title-icon">
-            <i class="pe-7s-note2 icon-gradient bg-mean-fruit">
+            <i class="pe-7s-compass icon-gradient bg-mean-fruit">
                 </i>
             </div>
             <div>Edit Publisher
@@ -79,7 +79,7 @@
                 </div>
                 <div class="position-relative form-group">
                     <label class="">Image</label><br>
-                    <div style="margin-bottom: 8px"><img id="publisher_photo" src="../../upload/images/publisher/<?= $publisher->image ?>" width="50%" height="300" alt=""></div>
+                    <div style="margin-bottom: 8px"><img id="publisher_photo" src="../../upload/images/publisher/<?= $publisher->image ?>" width="200" height="200" alt=""></div>
                     <input type="file" name="image" placeholder="Choose image" id="image" class="form-control" onchange="document.getElementById('publisher_photo').src = window.URL.createObjectURL(this.files[0])">
                 </div>
                 <div class="position-relative form-group">
