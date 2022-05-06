@@ -45,8 +45,7 @@ class Book
          publish_year=:publish_year, 
          price=:price, 
          image=:image, 
-         size=:size, 
-         page=:page
+         page=:page,
          book_file_review=:book_file_review, 
          book_file=:book_file, 
          detail=:detail";
@@ -65,7 +64,7 @@ class Book
         $this->publish_year=htmlspecialchars(strip_tags($this->publish_year));
         $this->price = htmlspecialchars(strip_tags($this->price));
         $this->image = htmlspecialchars(strip_tags($this->image));
-        $this->size=htmlspecialchars(strip_tags($this->size));
+        //$this->size=htmlspecialchars(strip_tags($this->size));
         $this->page = htmlspecialchars(strip_tags($this->page));
         $this->book_file_review = htmlspecialchars(strip_tags($this->book_file_review));
         $this->book_file=htmlspecialchars(strip_tags($this->book_file));
@@ -80,7 +79,7 @@ class Book
         $stmt->bindParam(":publish_year", $this->publish_year);
         $stmt->bindParam(":price", $this->price);
         $stmt->bindParam(":image", $this->image);
-        $stmt->bindParam(":size", $this->size);
+        //$stmt->bindParam(":size", $this->size);
         $stmt->bindParam(":page", $this->page);
         $stmt->bindParam(":book_file_review", $this->book_file_review);
         $stmt->bindParam(":book_file", $this->book_file);
@@ -132,9 +131,19 @@ class Book
     
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
     
-        $this->title = $row['title'];
-        $this->status = $row['status'];
+        $this->title =  $row['title'];
+        $this->author_id =  $row['author_id'];
+        $this->ISBN =  $row['ISBN'];
+        $this->category_id =  $row['category_id'];
+        $this->publisher_id =  $row['publisher_id'];
+        $this->publish_year =  $row['publish_year'];
+        $this->price =  $row['price'];
+        $this->detail =  $row['detail'];
+        $this->page =  $row['page'];
         $this->image = $row['image'];
+        $this->book_file_review = $row['book_file_review'];
+        $this->book_file = $row['book_file'];
+        
     }
     public function update()
     {
@@ -142,22 +151,45 @@ class Book
         $query = "UPDATE
                 " . $this->table_name . "
             SET
-                title=:title,
-                status=:status
+                author_id=:author_id,
+                title=:title, 
+                ISBN=:ISBN, 
+                category_id=:category_id, 
+                publisher_id=:publisher_id, 
+                publish_year=:publish_year, 
+                price=:price,
+                page=:page,
+                detail=:detail
             WHERE
                 id = :id";
 
         $stmt = $this->conn->prepare($query);
 
         // posted values
+        $this->author_id = htmlspecialchars(strip_tags($this->author_id));
         $this->title = htmlspecialchars(strip_tags($this->title));
-        $this->status = htmlspecialchars(strip_tags($this->status));
+        $this->ISBN=htmlspecialchars(strip_tags($this->ISBN));
+        $this->category_id = htmlspecialchars(strip_tags($this->category_id));
+        $this->publisher_id = htmlspecialchars(strip_tags($this->publisher_id));
+        $this->publish_year=htmlspecialchars(strip_tags($this->publish_year));
+        $this->price = htmlspecialchars(strip_tags($this->price));
+        //$this->size=htmlspecialchars(strip_tags($this->size));
+        $this->page = htmlspecialchars(strip_tags($this->page));
+        $this->detail=htmlspecialchars(strip_tags($this->detail));
        
         $this->id = htmlspecialchars(strip_tags($this->id));
 
         // bind parameters
+        $stmt->bindParam(":author_id", $this->author_id);
         $stmt->bindParam(":title", $this->title);
-        $stmt->bindParam(":status", $this->status);
+        $stmt->bindParam(":ISBN", $this->ISBN);
+        $stmt->bindParam(":category_id", $this->category_id);
+        $stmt->bindParam(":publisher_id", $this->publisher_id);
+        $stmt->bindParam(":publish_year", $this->publish_year);
+        $stmt->bindParam(":price", $this->price);
+        //$stmt->bindParam(":size", $this->size);
+        $stmt->bindParam(":page", $this->page);
+        $stmt->bindParam(":detail", $this->detail);
 
         $stmt->bindParam(':id', $this->id);
 

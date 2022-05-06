@@ -17,15 +17,32 @@ $book = new Book($db);
 
 if ($_POST) {
     // set book property values
-    $book->title = $_POST['title'];
-    $book->status = $_POST['status'];
+   
+    $book->title =  $_POST['title'];
+    $book->author_id =  $_POST['author_id'];
+    $book->ISBN =  $_POST['ISBN'];
+    $book->category_id =  $_POST['category_id'];
+    $book->publisher_id =  $_POST['publisher_id'];
+    $book->publish_year =  $_POST['publication_year'];
+    $book->price =  $_POST['price'];
+    $book->detail =  $_POST['detail'];
+    $book->page =  $_POST['page'];
+   
     $image = !empty($_FILES["image"]["name"])
         ? sha1_file($_FILES['image']['tmp_name']) . "-" . basename($_FILES["image"]["name"]) : "";
     $book->image = $image;
+
+    $book_file_review = !empty($_FILES["book_file_review"]["name"])
+        ? sha1_file($_FILES['book_file_review']['tmp_name']) . "-" . basename($_FILES["book_file_review"]["name"]) : "";
+    $book->book_file_review = $book_file_review;
+
+    $book_file = !empty($_FILES["book_file"]["name"])
+        ? sha1_file($_FILES['book_file']['tmp_name']) . "-" . basename($_FILES["book_file"]["name"]) : "";
+    $book->book_file = $book_file;
+
     // create the product
     if ($book->create()) {
         echo "<div class='alert alert-success'>Book was created.</div>";
-        // try to upload the submitted file
         // uploadPhoto() method will return an error message, if any.
         echo $book->uploadPhoto();
     }
@@ -129,8 +146,8 @@ if ($_POST) {
                             <div class="position-relative form-group">
                                 <label class="">Publisher</label>
                                 <?php
-                                $publisher = new Publisher($db);
-                                $stmt = $publisher->readAll();
+                                    $publisher = new Publisher($db);
+                                    $stmt = $publisher->readAll();
                                 ?>
                                 <select class="form-control" name="publisher_id" id="publisher_id">
                                     <option value="" selected disabled>Choice Publisher</option>
@@ -183,9 +200,14 @@ if ($_POST) {
                         <input type="file" name="image" placeholder="Choose image" id="image" class="form-control" onchange="document.getElementById('book_photo').src = window.URL.createObjectURL(this.files[0])">
                     </div>
                     <div class="position-relative form-group">
+                        <label class="">Book File Review</label>
+                        <input type="file" name="book_file_review" placeholder="Choose Book File" id="book_file_review" class="form-control">
+                    </div>
+                    <div class="position-relative form-group">
                         <label class="">Book File</label>
                         <input type="file" name="book_file" placeholder="Choose Book File" id="book_file" class="form-control">
                     </div>
+
                     <input type="submit" class="btn btn-dark" name="submit" value="Save Ebook">
                 </form>
             </div>
