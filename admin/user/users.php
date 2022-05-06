@@ -2,7 +2,7 @@
    include("../inc/header.php");
     // include 'database.php';
     include(__DIR__ . "/../../config/database.php");
-    include(__DIR__ . "/../../objects/slide.php");
+    include(__DIR__ . "/../../objects/user.php");
 ?>
 <div class="app-page-title">
     <div class="page-title-wrapper">
@@ -11,15 +11,15 @@
                 <i class="pe-7s-photo icon-gradient bg-mean-fruit">
                 </i>
             </div>
-            <div>Slide
-                <div class="page-title-subheading">This is a page for management slide.
+            <div>Users
+                <div class="page-title-subheading">This is a page for management user.
                 </div>
             </div>
         </div>
         <div class="page-title-actions">
             
             <div class="d-inline-block dropdown">
-                <a type="button" class="btn-shadow btn btn-info" href="../slide/add_slide.php" >
+                <a type="button" class="btn-shadow btn btn-info" href="../user/add_user.php" >
                     <span class="btn-icon-wrapper pr-2 opacity-7">
                         <i class="fa fa-plus fa-w-20"></i>
                     </span>
@@ -37,13 +37,13 @@
                  <div class="card-body"><h5 class="card-title"></h5>
                 <div class="row">
                         <div class="col-md-12 p-3">
-                            <table class="table" id="tbl_slide">
+                            <table class="table" id="tbl_user">
                                 <thead>
                                     <tr>
                                         <th scope="col" width = "10%">Id</th>
-                                        <th scope="col" width = "30%">Title</th>
-                                        <th scope="col" width = "30%">Image</th>
-                                        <th scope="col" width = "10%">Status</th>
+                                        <th scope="col" width = "20%">Profile</th>
+                                        <th scope="col" width = "25%">Name</th>
+                                        <th scope="col" width = "30%">Email</th>
                                         <th scope="col" width = "15%">Action</th>
                                     </tr>
                                 </thead>
@@ -52,20 +52,22 @@
                                        
                                        $database = new Database();
                                        $db = $database->getConnection();
-                                       $slide = new Slide($db);
-                                       $stmt = $slide->readAll();
+                                       $user = new User($db);
+                                       $stmt = $user->readAll();
                                        
                                     ?>
                                     <?php while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) { 
                                         $id = $row['id']; ?>
                                         <tr>
                                             <td><?php echo $row['id']; ?></td>
-                                            <td><?php echo $row['title']; ?></td>
-                                            <td><img src="<?= '../../upload/images/slide/'.$row['image'] ?>" width="170" height="70"/> </td>
-                                            <td><?php echo $row['status']; ?></td>
+                                            <td><img src="<?= '../../upload/images/user/'.$row['img_profile'] ?>" width="80" height="100"/> </td>
+                                    
+                                            <td><?php echo $row['firstname'] .' '.$row['lastname']; ?></td>
+                                           
+                                            <td><?php echo $row['email']; ?></td>
                                             <td>
-                                                <form method="POST" action="queries/delete_slide.php">
-                                                    <a href="edit_slide.php?id=<?php echo $row['id']; ?>" type="button" class="btn btn-primary btn-sm">Edit</a>
+                                                <form method="POST" action="queries/delete_user.php">
+                                                    <a href="edit_user.php?id=<?php echo $row['id']; ?>" type="button" class="btn btn-primary btn-sm">Edit</a>
                                                     <a delete-id='<?= $id ?>' class='btn btn-danger text-white btn-sm delete-object' type="button">Delete</a>
                                                 </form>
                                             </td>
@@ -86,7 +88,7 @@
 
 <script>
     $(document).ready(function() {
-       $('#tbl_slide').DataTable();
+       $('#tbl_user').DataTable();
     } );
 
 // JavaScript for deleting product
@@ -104,7 +106,7 @@ $(document).on('click', '.delete-object', function(){
             confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    $.post('delete_slide.php', {
+                    $.post('delete_user.php', {
                     object_id: id
                 }, function(data){
                     Swal.fire(

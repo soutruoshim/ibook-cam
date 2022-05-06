@@ -42,9 +42,9 @@
                                     <tr>
                                         <th scope="col" width = "10%">Id</th>
                                         <th scope="col" width = "35%">Name</th>
-                                        <th scope="col" width = "35%">Image</th>
+                                        <th scope="col" width = "30%">Image</th>
                                         <th scope="col" width = "10%">Status</th>
-                                        <th scope="col" width = "10%">Action</th>
+                                        <th scope="col" width = "15%">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>

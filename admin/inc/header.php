@@ -171,7 +171,7 @@
                                 </li>
                                 <li class="app-sidebar__heading">Users</li>
                                 <li>
-                                    <a href="../user/user.php" class="<?= $active == '/ebook-php/admin/user/user.php'?'mm-active':''?>">
+                                    <a href="../user/users.php" class="<?= $active == '/ibook-cambodia/admin/user/users.php'?'mm-active':''?>">
                                         <i class="metismenu-icon pe-7s-users"></i>
                                         Users
                                     </a>
