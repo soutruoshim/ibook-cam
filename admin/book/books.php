@@ -69,8 +69,8 @@
                                 
                                             <td><?php echo $row['title']; ?></td>
                                             
-                                            <td><?php echo $row['file']; ?> <a href="<?= '../../upload/file/book_file_review/'.$row['book_file_review'] ?>">View</a></td>
-                                            <td><?php echo $row['file']; ?> <a href="<?= '../../upload/file/book_file/'.$row['book_file'] ?>">View</a></td>
+                                            <td><a href="<?= '../../upload/file/book_file_review/'.$row['book_file_review'] ?>">View</a></td>
+                                            <td><a href="<?= '../../upload/file/book_file/'.$row['book_file'] ?>">View</a></td>
                                             <td>
                                                 <form method="POST" action="queries/delete_book.php">
                                                     <a href="edit_book.php?id=<?php echo $row['id']; ?>" type="button" class="btn btn-primary btn-sm">Edit</a>

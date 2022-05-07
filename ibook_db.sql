@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 05, 2022 at 06:59 AM
+-- Generation Time: May 07, 2022 at 02:11 AM
 -- Server version: 5.7.36
 -- PHP Version: 8.0.13
 
@@ -73,7 +73,14 @@ CREATE TABLE IF NOT EXISTS `books` (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `books`
+--
+
+INSERT INTO `books` (`id`, `author_id`, `title`, `ISBN`, `category_id`, `publisher_id`, `publish_year`, `price`, `image`, `size`, `page`, `book_file_review`, `book_file`, `detail`, `created_at`, `updated_at`) VALUES
+(4, 20, 'jh', '12jh', '16', 15, '2012', 45, '63a90ff103506a08727defff26e3f880448f535d-1200px-World_Passport_front_page.jpg', NULL, 345, '26c6eedcd3782c5b654fb2c13abd297e2191cd66-DAIKOU MALL.pdf', '9f981f653a89f9b230152ccbd1cdc1f4d3596737-1585629029_70991764.pdf', 'nothing to boy', '2022-05-06 04:00:40', NULL);
 
 -- --------------------------------------------------------
 
@@ -91,16 +98,16 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `categories`
 --
 
 INSERT INTO `categories` (`id`, `title`, `slug`, `image`, `status`, `created_at`, `updated_at`) VALUES
-(16, '3546', NULL, '63a90ff103506a08727defff26e3f880448f535d-1200px-World_Passport_front_page.jpg', 'active', '2022-05-05 03:53:09', NULL),
-(15, '234', NULL, '63a90ff103506a08727defff26e3f880448f535d-1200px-World_Passport_front_page.jpg', 'active', '2022-05-05 03:41:01', NULL),
-(14, 'sdf', NULL, '63a90ff103506a08727defff26e3f880448f535d-1200px-World_Passport_front_page.jpg', 'inactive', '2022-05-05 03:39:34', NULL);
+(1, 'Language', NULL, '53f36bc61dc4e9e1b0d15194b2eb1aa450e50a15-language.png', 'active', '2022-05-07 02:02:01', NULL),
+(2, 'Tafseer', NULL, '478b632c22c2f32569ebd7b4fcd0ac637d3826ec-tafshir.jpeg', 'active', '2022-05-07 02:02:32', NULL),
+(3, 'Fiqh', NULL, '07eb89e9c4b18db31095868d7cbd91fd4ce45f29-fiqah.jpeg', 'active', '2022-05-07 02:02:53', NULL);
 
 -- --------------------------------------------------------
 
@@ -143,19 +150,16 @@ CREATE TABLE IF NOT EXISTS `slides` (
   `created_dt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `update_dt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Dumping data for table `slides`
 --
 
 INSERT INTO `slides` (`id`, `title`, `image`, `status`, `created_dt`, `update_dt`) VALUES
-(26, 'w', '63a90ff103506a08727defff26e3f880448f535d-1200px-World_Passport_front_page.jpg', 'active', '2022-05-05 10:38:04', NULL),
-(3, 'uio', '63a90ff103506a08727defff26e3f880448f535d-1200px-World_Passport_front_page.jpg', 'inactive', '2022-03-17 15:05:33', NULL),
-(25, 'w', '63a90ff103506a08727defff26e3f880448f535d-1200px-World_Passport_front_page.jpg', 'active', '2022-05-05 10:37:45', NULL),
-(24, 'Slide1', '26f16acfcfdaf886d244c169392b02cbc9deb6a8-de378j3jtuks.png', 'active', '2022-05-05 10:36:00', NULL),
-(21, '', 'fe79966cbefb4158165a4ce7e8ba035a5bb91d31-refunded.jpg', 'inactive', '2022-04-26 14:43:35', NULL),
-(20, 'TR', '392b13a32958c1c1ebb4dc4575e03353cb9e228d-microsoft.png', 'active', '2022-04-21 16:27:51', NULL);
+(1, 'Slide1', '865768fa0ad8e9cece95e94b2e04a609f2426be9-slide1.jpg', 'active', '2022-05-07 09:08:33', NULL),
+(2, 'Slide2', '68ffcbaf2f451365250168afbfee54983b0c6349-1.png', 'active', '2022-05-07 09:08:44', NULL),
+(3, 'Slide3', '63283e53cbff28710334af367ea818e9599b2b86-s3.jpg', 'active', '2022-05-07 09:09:03', NULL);
 
 -- --------------------------------------------------------
 
