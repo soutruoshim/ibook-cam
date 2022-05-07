@@ -91,7 +91,7 @@
     <div class="container">
             <div class="row">
                 <div class="col-md-12" style="text-align:center">
-                    <img src="images/logo.png" height="50">
+                    <img src="assets/images/logo.png" height="50">
                 </div>
                 <div class="col-md-12" style="text-align:center">
                     <i>Library. The world's largest ebook library</i>

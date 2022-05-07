@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 07, 2022 at 02:11 AM
+-- Generation Time: May 07, 2022 at 03:23 PM
 -- Server version: 5.7.36
 -- PHP Version: 8.0.13
 
@@ -37,16 +37,15 @@ CREATE TABLE IF NOT EXISTS `authors` (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `authors`
 --
 
 INSERT INTO `authors` (`id`, `title`, `slug`, `image`, `status`, `created_at`, `updated_at`) VALUES
-(17, 'KLM', NULL, '63a90ff103506a08727defff26e3f880448f535d-1200px-World_Passport_front_page.jpg', 'active', '2022-05-05 04:22:17', NULL),
-(18, 'KLM', NULL, '63a90ff103506a08727defff26e3f880448f535d-1200px-World_Passport_front_page.jpg', 'active', '2022-05-05 04:22:54', NULL),
-(20, '3425u', NULL, 'ba858db81bf914c4f5cc5a14d4f838732b370704-paid.jpg', 'inactive', '2022-05-05 04:23:32', NULL);
+(1, 'Abdullaziz Bin Baz Rahimahullah', NULL, 'be30992937d081b85ffc8bbd520fa8a661dbdab7-binbaz.png', 'active', '2022-05-07 15:08:38', NULL),
+(2, 'Elyes Ismael', NULL, '1fd6a3cc536aa295004bcba5c81ba2b544edfe19-empty.jpg', 'active', '2022-05-07 15:11:24', NULL);
 
 -- --------------------------------------------------------
 
@@ -73,14 +72,14 @@ CREATE TABLE IF NOT EXISTS `books` (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `books`
 --
 
 INSERT INTO `books` (`id`, `author_id`, `title`, `ISBN`, `category_id`, `publisher_id`, `publish_year`, `price`, `image`, `size`, `page`, `book_file_review`, `book_file`, `detail`, `created_at`, `updated_at`) VALUES
-(4, 20, 'jh', '12jh', '16', 15, '2012', 45, '63a90ff103506a08727defff26e3f880448f535d-1200px-World_Passport_front_page.jpg', NULL, 345, '26c6eedcd3782c5b654fb2c13abd297e2191cd66-DAIKOU MALL.pdf', '9f981f653a89f9b230152ccbd1cdc1f4d3596737-1585629029_70991764.pdf', 'nothing to boy', '2022-05-06 04:00:40', NULL);
+(5, 2, 'áž€áž¶ážšážŸáŸ’áž‚áž¶áž›áŸ‹áž¢áž›áŸ‹áž¡áŸ„áŸ‡', '001', '3', 1, '2013', 0, 'e5a775d92e1a55120ce3aacd29c74f99286d4588-know_allah.png', NULL, 107, '', '', 'Nothing', '2022-05-07 15:21:34', NULL);
 
 -- --------------------------------------------------------
 
@@ -125,15 +124,14 @@ CREATE TABLE IF NOT EXISTS `publishers` (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `publishers`
 --
 
 INSERT INTO `publishers` (`id`, `title`, `slug`, `image`, `status`, `created_at`, `updated_at`) VALUES
-(15, '234', NULL, '63a90ff103506a08727defff26e3f880448f535d-1200px-World_Passport_front_page.jpg', 'active', '2022-05-05 03:41:01', NULL),
-(14, 'sdf', NULL, '63a90ff103506a08727defff26e3f880448f535d-1200px-World_Passport_front_page.jpg', 'inactive', '2022-05-05 03:39:34', NULL);
+(1, 'ážŸáž˜áž¶áž‚áž˜ážŸáž˜áŸ’ážšáž”ážŸáž˜áŸ’ážšáž½áž›ážŸáž„áŸ’áž‚áž˜áž“áŸƒážšážŠáŸ’áž‹áž‚áž»áž™ážœáŸ‰áŸ‚áž', NULL, '0ddd5473d6c2adbd8c5fcfe015b305cddfe91221-ážŸáž˜áž¶áž‚áž˜ážŸáž˜áŸ’ážšáž”ážŸáž˜áŸ’ážšáž½áž›ážŸáž„áŸ’áž‚áž˜áž“áŸƒážšážŠáŸ’áž‹áž‚áž»áž™ážœáŸ‰áŸ‚áž.jpg', 'active', '2022-05-07 15:10:36', NULL);
 
 -- --------------------------------------------------------
 
