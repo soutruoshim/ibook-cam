@@ -201,31 +201,21 @@ class Book
         return false;
 
     }
-    public function update_with_file()
+    public function update_image()
     {
 
         $query = "UPDATE
                 " . $this->table_name . "
             SET
-                title=:title, 
-                image=:image, 
-                status=:status
+                image=:image
             WHERE
                 id = :id";
 
         $stmt = $this->conn->prepare($query);
-
         // posted values
-        $this->title = htmlspecialchars(strip_tags($this->title));
-        $this->status = htmlspecialchars(strip_tags($this->status));
         $this->image=htmlspecialchars(strip_tags($this->image));
-        
         $this->id = htmlspecialchars(strip_tags($this->id));
-
-    
         // bind values
-        $stmt->bindParam(":title", $this->title);
-        $stmt->bindParam(":status", $this->status);
         $stmt->bindParam(":image", $this->image);
         
         $stmt->bindParam(':id', $this->id);
@@ -236,8 +226,59 @@ class Book
         }
 
         return false;
-
     }
+
+    public function update_book_file_review()
+    {
+        $query = "UPDATE
+                " . $this->table_name . "
+            SET
+                book_file_review=:book_file_review
+            WHERE
+                id = :id";
+
+        $stmt = $this->conn->prepare($query);
+        // posted values
+        $this->book_file_review=htmlspecialchars(strip_tags($this->book_file_review));
+        $this->id = htmlspecialchars(strip_tags($this->id));
+        // bind values
+        $stmt->bindParam(":book_file_review", $this->book_file_review);
+        
+        $stmt->bindParam(':id', $this->id);
+
+        // execute the query
+        if ($stmt->execute()) {
+            return true;
+        }
+
+        return false;
+    }
+    public function update_book_file()
+    {
+        $query = "UPDATE
+                " . $this->table_name . "
+            SET
+                book_file=:book_file
+            WHERE
+                id = :id";
+
+        $stmt = $this->conn->prepare($query);
+        // posted values
+        $this->book_file = htmlspecialchars(strip_tags($this->book_file));
+        $this->id = htmlspecialchars(strip_tags($this->id));
+        // bind values
+        $stmt->bindParam(":book_file", $this->book_file);
+        
+        $stmt->bindParam(':id', $this->id);
+
+        // execute the query
+        if ($stmt->execute()) {
+            return true;
+        }
+
+        return false;
+    }
+
 // delete the product
     public function delete()
     {
@@ -375,6 +416,150 @@ class Book
                 $result_message.="<div class='alert alert-danger'>";
                     $result_message.="{$file_upload_error_messages}";
                     $result_message.="<div>Update the record to upload photo.</div>";
+                $result_message.="</div>";
+            }
+    
+        }
+    
+        return $result_message;
+    }
+
+    // will upload book_file_review file to server
+    function uploadFileReview(){
+
+        $result_message="";
+    
+        // now, if book_file_review is not empty, try to upload the book_file_review
+        if($this->book_file_review){
+    
+            // sha1_file() function is used to make a unique file name
+            $target_directory = "../../upload/file/book_file_review/";
+            $target_file = $target_directory . $this->book_file_review;
+            $file_type = pathinfo($target_file, PATHINFO_EXTENSION);
+    
+            // error message is empty
+            $file_upload_error_messages="";
+            // make sure that file is a real book_file_review
+            $check = filesize($_FILES["book_file_review"]["tmp_name"]);
+            if($check!==false){
+                // submitted file is an book_file_review
+            }else{
+                $file_upload_error_messages.="<div>Submitted file is not an book_file_review.</div>";
+            }
+            
+            // make sure certain file types are allowed
+            $allowed_file_types=array("jpg", "jpeg", "png", "gif", "pdf");
+            if(!in_array($file_type, $allowed_file_types)){
+                $file_upload_error_messages.="<div>Only JPG, JPEG, PNG, GIF files are allowed.</div>";
+            }
+            
+            // make sure file does not exist
+            if(file_exists($target_file)){
+                $file_upload_error_messages.="<div>book_file_review already exists. Try to change file name.</div>";
+            }
+            
+            // make sure submitted file is not too large, can't be larger than 1 MB
+            if($_FILES['book_file_review']['size'] > (102400000)){
+                $file_upload_error_messages.="<div>book_file_review must be less than 1 MB in size.</div>";
+            }
+            
+            // make sure the 'uploads' folder exists
+            // if not, create it
+            if(!is_dir($target_directory)){
+                mkdir($target_directory, 0777, true);
+            }
+
+            // if $file_upload_error_messages is still empty
+            if(empty($file_upload_error_messages)){
+                // it means there are no errors, so try to upload the file
+                if(move_uploaded_file($_FILES["book_file_review"]["tmp_name"], $target_file)){
+                    // it means photo was uploaded
+                }else{
+                    $result_message.="<div class='alert alert-danger'>";
+                        $result_message.="<div>Unable to upload file review.</div>";
+                        $result_message.="<div>Update the record to file review.</div>";
+                    $result_message.="</div>";
+                }
+            }
+            
+            // if $file_upload_error_messages is NOT empty
+            else{
+                // it means there are some errors, so show them to user
+                $result_message.="<div class='alert alert-danger'>";
+                    $result_message.="{$file_upload_error_messages}";
+                    $result_message.="<div>Update the record to file review.</div>";
+                $result_message.="</div>";
+            }
+    
+        }
+    
+        return $result_message;
+    }
+
+    // will upload book_file file to server
+    function uploadFile(){
+
+        $result_message="";
+    
+        // now, if book_file is not empty, try to upload the book_file
+        if($this->book_file){
+    
+            // sha1_file() function is used to make a unique file name
+            $target_directory = "../../upload/file/book_file/";
+            $target_file = $target_directory . $this->book_file;
+            $file_type = pathinfo($target_file, PATHINFO_EXTENSION);
+    
+            // error message is empty
+            $file_upload_error_messages="";
+            // make sure that file is a real book_file
+            $check = filesize($_FILES["book_file"]["tmp_name"]);
+            if($check!==false){
+                // submitted file is an book_file
+            }else{
+                $file_upload_error_messages.="<div>Submitted file is not an book_file.</div>";
+            }
+            
+            // make sure certain file types are allowed
+            $allowed_file_types=array("jpg", "jpeg", "png", "gif", "pdf");
+            if(!in_array($file_type, $allowed_file_types)){
+                $file_upload_error_messages.="<div>Only JPG, JPEG, PNG, GIF files are allowed.</div>";
+            }
+            
+            // make sure file does not exist
+            if(file_exists($target_file)){
+                $file_upload_error_messages.="<div>book_file already exists. Try to change file name.</div>";
+            }
+            
+            // make sure submitted file is not too large, can't be larger than 1 MB
+            if($_FILES['book_file']['size'] > (102400000)){
+                $file_upload_error_messages.="<div>book_file must be less than 1 MB in size.</div>";
+            }
+            
+            // make sure the 'uploads' folder exists
+            // if not, create it
+            if(!is_dir($target_directory)){
+                mkdir($target_directory, 0777, true);
+            }
+
+            // if $file_upload_error_messages is still empty
+            if(empty($file_upload_error_messages)){
+                // it means there are no errors, so try to upload the file
+                if(move_uploaded_file($_FILES["book_file"]["tmp_name"], $target_file)){
+                    // it means photo was uploaded
+                }else{
+                    $result_message.="<div class='alert alert-danger'>";
+                        $result_message.="<div>Unable to upload file review.</div>";
+                        $result_message.="<div>Update the record to file review.</div>";
+                    $result_message.="</div>";
+                }
+            }
+            
+            // if $file_upload_error_messages is NOT empty
+            else{
+                // it means there are some errors, so show them to user
+                $result_message.="<div class='alert alert-danger'>";
+                    $result_message.="{$file_upload_error_messages}";
+                    $result_message.="<div>Update the record to file review.</div>";
                 $result_message.="</div>";
             }
     

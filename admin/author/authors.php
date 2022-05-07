@@ -61,7 +61,7 @@
                                         <tr>
                                             <td><?php echo $row['id']; ?></td>
                                             <td><?php echo $row['title']; ?></td>
-                                            <td><img src="<?= '../../upload/images/author/'.$row['image'] ?>" width="170" height="70"/> </td>
+                                            <td><img src="<?= '../../upload/images/author/'.$row['image'] ?>" width="80" height="100"/> </td>
                                             <td><?php echo $row['status']; ?></td>
                                             <td>
                                                 <form method="POST" action="queries/delete_author.php">
