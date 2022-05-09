@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 07, 2022 at 03:23 PM
+-- Generation Time: May 09, 2022 at 08:22 AM
 -- Server version: 5.7.36
 -- PHP Version: 8.0.13
 
@@ -171,17 +171,17 @@ CREATE TABLE IF NOT EXISTS `users` (
   `firstname` varchar(32) NOT NULL,
   `lastname` varchar(32) NOT NULL,
   `email` varchar(64) NOT NULL,
-  `contact_number` varchar(64) NOT NULL,
-  `address` text NOT NULL,
+  `contact_number` varchar(64) DEFAULT NULL,
+  `address` text,
   `password` varchar(512) NOT NULL,
-  `access_level` varchar(16) NOT NULL,
-  `access_code` text NOT NULL,
-  `status` int(11) NOT NULL COMMENT '0=pending,1=confirmed',
+  `access_level` varchar(16) DEFAULT 'Customer',
+  `access_code` text,
+  `status` int(11) DEFAULT NULL COMMENT '0=pending,1=confirmed',
   `img_profile` varchar(200) DEFAULT NULL,
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COMMENT='admin and customer users';
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8 COMMENT='admin and customer users';
 
 --
 -- Dumping data for table `users`
@@ -197,7 +197,9 @@ INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `contact_number`, `
 (14, 'Charlon', 'Ignacio', 'charlon@gmail.com', '09876543345', 'Tandang Sora, QC', '$2y$10$Fj6O1tPYI6UZRzJ9BNfFJuhURN9DnK5fQGHEsfol5LXRu.tCYYggu', 'Customer', '', 1, NULL, '2015-03-24 08:06:57', '2015-03-24 00:48:00'),
 (15, 'Kobe Bro', 'Bryant', 'kobe@gmail.com', '09898787674', 'Los Angeles, California', '$2y$10$fmanyjJxNfJ8O3p9jjUixu6EOHkGZrThtcd..TeNz2g.XZyCIuVpm', 'Customer', '', 1, NULL, '2015-03-26 11:28:01', '2015-03-25 20:39:52'),
 (20, 'Tim', 'Duncan', 'tim@example.com', '9999999', 'San Antonio, Texas, USA', '$2y$10$9OSKHLhiDdBkJTmd3VLnQeNPCtyH1IvZmcHrz4khBMHdxc8PLX5G6', 'Customer', '0X4JwsRmdif8UyyIHSOUjhZz9tva3Czj', 1, NULL, '2016-05-26 01:25:59', '2016-05-25 10:25:59'),
-(21, 'Tony', 'Parker', 'tony@example.com', '8888888', 'Blk 24 A Lot 6 Ph 3\r\nPeace Village, San Luis', '$2y$10$lBJfvLyl/X5PieaztTYADOxOQeZJCqETayF.O9ld17z3hcKSJwZae', 'Customer', 'THM3xkZzXeza5ISoTyPKl6oLpVa88tYl', 1, NULL, '2016-05-26 01:29:01', '2016-06-13 10:46:33');
+(21, 'Tony', 'Parker', 'tony@example.com', '8888888', 'Blk 24 A Lot 6 Ph 3\r\nPeace Village, San Luis', '$2y$10$lBJfvLyl/X5PieaztTYADOxOQeZJCqETayF.O9ld17z3hcKSJwZae', 'Customer', 'THM3xkZzXeza5ISoTyPKl6oLpVa88tYl', 1, NULL, '2016-05-26 01:29:01', '2016-06-13 10:46:33'),
+(22, 'Mike', 'Dalisay', 'mike@codeofaninja.com', NULL, NULL, '$2y$10$5Dy.XZPRtAcDNiq413h2keCFEIQ.OX3tqD3yEfL/uZypTSWAEcciW', NULL, NULL, NULL, NULL, '2022-05-09 14:33:25', '2022-05-09 08:20:52'),
+(23, 'srhdp', 'srhdp', 'kkkk@gmail.com', NULL, NULL, '$2y$10$.nyIvAnb7jICszfpu5QAgO8cdZ6pCgXqqISHTpI4l/EZPbaAiRie2', NULL, NULL, NULL, NULL, '2022-05-09 14:33:55', '2022-05-09 07:33:55');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
